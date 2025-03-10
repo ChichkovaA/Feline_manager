@@ -26,7 +26,7 @@ def add_file(file_path, cat_name):
                 print(f"Файл {file_name} уже существует в папке {cat_name}, копирование отменено.")
                 return
             shutil.copy2(file_path, file_dst)
-            print(f"Файл {file_name} скопирован в папку {cat_name}")
+            print(f"Файл {file_name} добавлен в папку {cat_name}")
             return
         # Копируем, если это папка
         if os.path.isdir(file_path):
@@ -34,7 +34,7 @@ def add_file(file_path, cat_name):
                 print(f"Папка {file_name} уже существует в папке {cat_name}, копирование отменено.")
                 return
             shutil.copytree(file_path, file_dst)
-            print(f"Папка {file_name} скопирована в папку {cat_name}")
+            print(f"Папка {file_name} добавлена в папку {cat_name}")
             return
         print(f"Ошибка: '{file_path}' не является ни файлом, ни папкой. Копирование отменено")
     except Exception as e:
