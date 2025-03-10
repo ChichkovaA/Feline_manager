@@ -114,6 +114,7 @@ class FelineManagerGUI(QtWidgets.QWidget):
 
         if not os.path.isdir(path_to_selected_item):
             self.log_output.append("Надо выбрать папку")
+            return
 
         add_file(file_path, path_to_selected_item)
 
@@ -121,8 +122,10 @@ class FelineManagerGUI(QtWidgets.QWidget):
         selected_items = self.file_tree.selectedItems()
         if len(selected_items) == 0:
             self.log_output.append("Не выбран файл или папка для удаления")
+            return
         if len(selected_items) >= 2:
             self.log_output.append("Удалять файлы или папки можно только по одному")
+            return
 
         item_to_delete = os.path.join(*_make_full_path(selected_items[0]))
         delete_file(item_to_delete)
