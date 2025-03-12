@@ -7,6 +7,8 @@ from commands.add_file import add_file
 from commands.delete_file import delete_file
 
 
+
+
 def _make_full_path(item):
     if item.parent() is None:
         return [item.text(0)]
@@ -90,9 +92,9 @@ class FelineManagerGUI(QtWidgets.QWidget):
         self.update_file_tree()
 
     def process_add_cat(self):
-        cat_name, is_ok = QtWidgets.QInputDialog.getText(self, "Новый котек))", "Введите имя нового котека))))")
+        cat_name, is_ok = QtWidgets.QInputDialog.getText(self, "Новая папка", "Введите имя кота")
         if not is_ok:
-            self.log_output.append("Отмена добавления котека")
+            self.log_output.append("Отмена добавления новой папки")
             return
         add_cat(cat_name)
 
@@ -101,18 +103,17 @@ class FelineManagerGUI(QtWidgets.QWidget):
         selected_items = self.file_tree.selectedItems()
 
         if len(selected_items) == 0:
-            self.log_output.append("Выберите котека, куда положить файл")
+            self.log_output.append("Выберите папку для добавления файла")
             return
         if len(selected_items) > 1:
-            self.log_output.append("Выберите ровно одного котека, куда положить файл")
+            self.log_output.append("Выберите одну папку для добавления файла")
             return
         if file_path == "Файл не выбран":
             self.log_output.append("Надо выбрать файл")
             return
 
         path_to_selected_item = os.path.join(*_make_full_path(selected_items[0])[1:])
-
-        if not os.path.isdir(path_to_selected_item):
+        if not os.path.isdir(os.path.join('cats', path_to_selected_item)):
             self.log_output.append("Надо выбрать папку")
             return
 
