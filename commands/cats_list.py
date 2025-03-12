@@ -14,3 +14,4 @@ def cats_list():
         print("Еще нет ни одной папки кота")
         return
     print(*cat_folders, sep="\n")
+    return cat_folders

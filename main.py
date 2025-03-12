@@ -4,6 +4,7 @@ from commands.add_cat import add_cat
 from commands.cats_list import cats_list
 from commands.delete_folder import delete_folder
 from commands.add_file import add_file
+from commands.delete_file import delete_file
 
 
 def main():
@@ -34,6 +35,11 @@ def main():
             print("Вы не ввели путь файла и(ли) папку назначения, пожалуйста, попробуйте снова")
             return
         add_file(sys.argv[2], sys.argv[3])
+    elif command == "delete_file":
+        if len(sys.argv) < 3:
+            print("Вы не ввели путь удаляемого файла, пожалуйста, попробуйте снова")
+            return
+        delete_file(sys.argv[2])
     else:
         print(f"Неизвестная команда: {command}. Используйте 'help' для вывода списка команд.")
 
